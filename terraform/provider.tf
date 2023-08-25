@@ -10,13 +10,13 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "tf-notifier-state-v1"
-    key            = "terraform.tfstate"
-    dynamodb_table = "tf-notifier-state-v1"
-    region         = "us-east-1"
-    profile        = "fiap"
-  }
+  #backend "s3" {
+   # bucket         = "tf-notifier-state-v1"
+    #key            = "terraform.tfstate"
+    #dynamodb_table = "tf-notifier-state-v1"
+    #region         = "us-east-1"
+    #profile        = "fiap"
+  #}
 }
 
 #provider "aws" {
@@ -25,18 +25,3 @@ terraform {
  #  shared_credentials_files = ["./.aws/credentials"]
  #  profile                  = "fiap"
  #}
-
- module "provider_compute" {
-  source  ="./modules/compute" 
-  depends_on = [ backend ]
- }
- 
-  module "provider_database" {
-  source  ="./modules/database" 
-  depends_on = [ backend ]
- }
-
-  module "provider_network" {
-  source  ="./modules/network" 
-  depends_on = [ backend ]
- }
