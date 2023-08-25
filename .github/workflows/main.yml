@@ -52,7 +52,7 @@ jobs:
       #run : terraform -chdir=./terraform plan -input=false -destroy -out tfplan
 
     - name: Step 09 - Terraform Apply
-      run : terraform -chdir=./terraform apply -auto-approve -input=false tfplan
+      run : terraform -chdir=./terraform apply -lock=false -auto-approve -input=false tfplan
 
     - name: Step 10 - Terraform Show
       run : terraform -chdir=./terraform show
