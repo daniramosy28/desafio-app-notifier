@@ -38,6 +38,9 @@ jobs:
     - name: Step 05 Create S3 Bucket
       run: aws s3api create-bucket --bucket tf-notifier-state-desafio --region us-east-1    
 
+    - name: Step Configure Backend for Terraform
+      run: echo 'terraform { backend "s3" { bucket = "tf-notifier-state-desafio" key = "path/to/terraform.tfstate" region = "us-east-1" } }' > backend.tf   
+
     - name: Step 06 - Terraform Init
       run : terraform -chdir=./terraform init -input=false
 
