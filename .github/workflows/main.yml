@@ -44,8 +44,12 @@ jobs:
       run : terraform -chdir=./terraform plan -input=false -out tfplan
       # run : terraform -chdir=./terraform plan -input=false -destroy -out tfplan
 
-    - name: Step 08 - Terraform Apply
-      run : terraform -chdir=./terraform apply -auto-approve -input=false tfplan
+    - name: Step 08 - Terraform Apply (Bucket)
+     # run : terraform -chdir=./terraform apply -auto-approve -input=false tfplan
+      run: terraform apply -auto-approve -target=aws_s3_bucket.tf-notifier-state-desafio -input=false tfplan
+
+    - name: Terraform Apply (Modules)
+      run: terraform apply -auto-approve -input=false tfplan
 
     - name: Step 09 - Terraform Show
       run : terraform -chdir=./terraform show
