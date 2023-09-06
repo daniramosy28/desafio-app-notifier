@@ -36,11 +36,20 @@ jobs:
         aws-region           : us-east-1
 
     - name: Step 05 Create S3 Bucket
-      run: aws s3api create-bucket --bucket tf-notifier-state-desafio --region us-east-1    
+      run: aws s3api create-bucket --bucket tf-notifier-state-desafio --region us-east-1   
+      
+      - name: Create DynamoDB Table
+      run: |
+        aws dynamodb create-table \
+            --table-name tf-notifier-state-desafio \
+            --attribute-definitions \
+                AttributeName=LockID,AttributeType=S \
+            --key-schema \
+                AttributeName=LockID,KeyType=HASH \
 
     - name: Step Configure Backend for Terraform
       run: echo 'terraform { backend "s3" { bucket = "tf-notifier-state-desafio" key = "path/to/terraform.tfstate" region = "us-east-1" } }' > backend.tf   
-
+      
     - name: Step 06 - Terraform Init
       run : terraform -chdir=./terraform init -input=false
 
@@ -48,11 +57,11 @@ jobs:
       run : terraform -chdir=./terraform validate
 
     - name: Step 08 - Terraform Plan
-      run : terraform -chdir=./terraform plan -lock=false -input=false -out tfplan
+      run : terraform -chdir=./terraform plan -input=false -out tfplan
       #run : terraform -chdir=./terraform plan -input=false -destroy -out tfplan
 
     - name: Step 09 - Terraform Apply
-      run : terraform -chdir=./terraform apply -lock=false -auto-approve -input=false tfplan
+      run : terraform -chdir=./terraform apply -auto-approve -input=false tfplan
 
     - name: Step 10 - Terraform Show
       run : terraform -chdir=./terraform show
