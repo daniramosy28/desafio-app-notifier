@@ -34,7 +34,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-session-token    : ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region           : us-east-1
-
+        
     - name: Step 05 Create S3 Bucket
       run: aws s3api create-bucket --bucket tf-notifier-state-desafio --region us-east-1   
       
