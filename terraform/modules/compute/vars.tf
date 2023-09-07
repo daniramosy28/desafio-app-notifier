@@ -17,22 +17,22 @@ variable "rds_dbname" {}
 
 # COMPUTE VARS DEFAULT VALUES
 
-variable "ec2_lt_name" {
+variable "ec2_desafio_name" {
     type    = string
-    default = "ec2_lt_name"
+    default = "ec2_desafio_name"
 }
 
-variable "ec2_lt_ami" {
+variable "ec2_desafio_ami" {
     type    = string
     default = "ami-02e136e904f3da870"
 }
 
-variable "ec2_lt_instance_type" {
+variable "ec2_desafio_instance_type" {
     type    = string
     default = "t2.micro"
 }
 
-variable "ec2_lt_ssh_key_name" {
+variable "ec2_desafio_ssh_key_name" {
     type    = string
     default = "ec2_lt_ssh_key_name"
 }

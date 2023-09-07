@@ -76,23 +76,23 @@ variable "rds_dbpassword" {
 
 # COMPUTE VARS CUSTOM VALUES
 
-variable "ec2_lt_name" {
+variable "ec2_desafio_name" {
     type    = string
-    default = "ec2-lt-notifier"
+    default = "ec2-desafio-notifier"
 }
 
-variable "ec2_lt_ami" {
+variable "ec2_desafio_ami" {
     type    = string
     # default = "ami-05fa00d4c63e32376"
     default = "ami-069aabeee6f53e7bf"
 }
 
-variable "ec2_lt_instance_type" {
+variable "ec2_desafio_instance_type" {
     type    = string
     default = "t2.micro"
 }
 
-variable "ec2_lt_ssh_key_name" {
+variable "ec2_desafio_ssh_key_name" {
     type    = string
     default = "vockey"
 }
